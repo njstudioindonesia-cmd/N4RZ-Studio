@@ -28,7 +28,7 @@ export default function MobileMenu({ studioName }: { studioName?: string }) {
 
   const menuVariants = {
     closed: { opacity: 0, y: -10, scale: 0.95, pointerEvents: "none" as any },
-    open: { opacity: 1, y: 0, scale: 1, pointerEvents: "auto" as any, transition: { duration: 0.2, ease: "easeOut" } }
+    open: { opacity: 1, y: 0, scale: 1, pointerEvents: "auto" as any, transition: { duration: 0.2 } }
   };
 
   const links = [
