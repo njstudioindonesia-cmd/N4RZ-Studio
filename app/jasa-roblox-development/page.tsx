@@ -33,7 +33,6 @@ export default async function JasaRoblox() {
   });
 
   const testimonials = await prisma.testimonial.findMany({
-    where: { OR: [{ service: 'ROBLOX' }, { service: 'ALL' }] },
     orderBy: { order: "asc" }
   });
 

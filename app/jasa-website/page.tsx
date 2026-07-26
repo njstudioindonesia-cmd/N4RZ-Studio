@@ -28,7 +28,6 @@ export default async function JasaWebsite() {
   });
 
   const testimonials = await prisma.testimonial.findMany({
-    where: { OR: [{ service: 'WEB' }, { service: 'ALL' }] },
     orderBy: { order: "asc" }
   });
 
