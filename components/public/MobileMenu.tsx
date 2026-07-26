@@ -63,7 +63,7 @@ export default function MobileMenu({ studioName }: { studioName?: string }) {
   ];
 
   return (
-    <div className="md:hidden flex items-center">
+    <div className="flex items-center">
       {/* Hamburger Button (In Header) */}
       <button 
         onClick={toggleMenu}

@@ -36,8 +36,7 @@ export default function TestimonialCarousel({ data }: { data: Testimonial[] }) {
                   <Star key={i} className="w-6 h-6 text-deep-amber fill-deep-amber" />
                 ))}
               </div>
-              
-              <blockquote className="text-2xl md:text-4xl font-display font-medium leading-tight mb-12 text-gray-200">
+              <blockquote className="text-xl md:text-3xl font-display font-light leading-relaxed mb-12 text-gray-300 max-w-4xl mx-auto">
                 "{data[currentIndex].content}"
               </blockquote>
               

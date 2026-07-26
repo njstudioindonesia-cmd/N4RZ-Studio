@@ -6,6 +6,8 @@ import prisma from "@/lib/prisma";
 import { IconMap } from "@/components/public/IconMap";
 import ClientLogos from "@/components/public/ClientLogos";
 import MegaCTA from "@/components/public/MegaCTA";
+import LandingNavbar from "@/components/public/LandingNavbar";
+import TestimonialCarousel from "@/components/public/TestimonialCarousel";
 
 export const metadata: Metadata = {
   title: "Jasa Pembuatan Website Profesional | NJ Studio",
@@ -25,6 +27,11 @@ export default async function JasaWebsite() {
     orderBy: { order: "asc" }
   });
 
+  const testimonials = await prisma.testimonial.findMany({
+    where: { OR: [{ service: 'WEB' }, { service: 'ALL' }] },
+    orderBy: { order: "asc" }
+  });
+
   if (!landingData) return <div>Service page not found</div>;
 
   const features = landingData.features as any[];
@@ -33,6 +40,8 @@ export default async function JasaWebsite() {
 
   return (
     <main className="min-h-screen bg-off-white selection:bg-deep-amber/30">
+      <LandingNavbar settings={settings} waNumber={waNumber} />
+      
       {/* Hero Section with Video Background */}
       <section className="relative min-h-[90vh] flex flex-col justify-center pt-32 pb-20 px-6 md:px-12 lg:px-24 overflow-hidden">
         {landingData.videoUrl ? (
@@ -137,6 +146,8 @@ export default async function JasaWebsite() {
           </div>
         </div>
       </section>
+
+      {testimonials.length > 0 && <TestimonialCarousel data={testimonials} />}
 
       {/* FAQ Section */}
       <FAQ faqs={faqs} title="Pertanyaan Seputar Website" />
