@@ -9,6 +9,7 @@ import ClientLogos from "@/components/public/ClientLogos";
 import MegaCTA from "@/components/public/MegaCTA";
 import LandingNavbar from "@/components/public/LandingNavbar";
 import TestimonialCarousel from "@/components/public/TestimonialCarousel";
+import Portfolio from "@/components/public/Portfolio";
 
 export const metadata: Metadata = {
   title: "NJ STUDIO | Roblox Developer",
@@ -37,6 +38,12 @@ export default async function JasaRoblox() {
   });
 
   const testimonials = await prisma.testimonial.findMany({
+    orderBy: { order: "asc" }
+  });
+
+  const robloxPortfolios = await prisma.portfolioItem.findMany({
+    where: { category: { contains: "Roblox" } },
+    take: 3,
     orderBy: { order: "asc" }
   });
 
@@ -146,6 +153,9 @@ export default async function JasaRoblox() {
           </div>
         </div>
       </section>
+
+      {/* Portfolio Khusus Roblox */}
+      <Portfolio data={robloxPortfolios} />
 
       {testimonials.length > 0 && <TestimonialCarousel data={testimonials} />}
 

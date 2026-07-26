@@ -8,6 +8,7 @@ import ClientLogos from "@/components/public/ClientLogos";
 import MegaCTA from "@/components/public/MegaCTA";
 import LandingNavbar from "@/components/public/LandingNavbar";
 import TestimonialCarousel from "@/components/public/TestimonialCarousel";
+import Portfolio from "@/components/public/Portfolio";
 
 export const metadata: Metadata = {
   title: "NJ STUDIO | Website Developer",
@@ -32,6 +33,12 @@ export default async function JasaWebsite() {
   });
 
   const testimonials = await prisma.testimonial.findMany({
+    orderBy: { order: "asc" }
+  });
+
+  const webPortfolios = await prisma.portfolioItem.findMany({
+    where: { category: { contains: "Web" } },
+    take: 3,
     orderBy: { order: "asc" }
   });
 
@@ -149,6 +156,9 @@ export default async function JasaWebsite() {
           </div>
         </div>
       </section>
+
+      {/* Portfolio Khusus Web */}
+      <Portfolio data={webPortfolios} />
 
       {testimonials.length > 0 && <TestimonialCarousel data={testimonials} />}
 
