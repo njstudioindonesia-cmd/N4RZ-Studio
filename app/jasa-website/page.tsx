@@ -10,8 +10,12 @@ import LandingNavbar from "@/components/public/LandingNavbar";
 import TestimonialCarousel from "@/components/public/TestimonialCarousel";
 
 export const metadata: Metadata = {
-  title: "Jasa Pembuatan Website Profesional | NJ Studio",
+  title: "NJ STUDIO | Website Developer",
   description: "Layanan jasa pembuatan website premium untuk profil perusahaan, e-commerce, dan aplikasi web khusus dengan desain elegan dan performa tinggi.",
+  openGraph: {
+    title: "NJ STUDIO | Website Developer",
+    description: "Layanan jasa pembuatan website premium dengan desain elegan dan performa tinggi.",
+  }
 };
 
 export default async function JasaWebsite() {

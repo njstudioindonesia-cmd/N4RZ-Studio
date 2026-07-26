@@ -11,8 +11,12 @@ import LandingNavbar from "@/components/public/LandingNavbar";
 import TestimonialCarousel from "@/components/public/TestimonialCarousel";
 
 export const metadata: Metadata = {
-  title: "Jasa Roblox Development & Scripting | NJ Studio",
+  title: "NJ STUDIO | Roblox Developer",
   description: "Layanan jasa pembuatan game Roblox profesional, custom scripting Luau, UI/UX game, dan map building oleh developer berpengalaman.",
+  openGraph: {
+    title: "NJ STUDIO | Roblox Developer",
+    description: "Layanan jasa pembuatan game Roblox profesional dan custom scripting Luau.",
+  }
 };
 
 export default async function JasaRoblox() {
