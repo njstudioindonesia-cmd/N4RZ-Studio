@@ -1,0 +1,157 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  password  String
+  name      String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model SiteSettings {
+  id          String   @id @default("global")
+  studioName  String   @default("N4RZ Studio")
+  accentColor String   @default("#D97725")
+  metaTitle   String   @default("N4RZ Studio | Premium Design & Creative Agency")
+  metaDesc    String   @default("A premium design studio specializing in crafting unique digital experiences, branding, and motion design.")
+  address     String   @default("Jakarta, Indonesia")
+  email       String   @default("hello@n4rz.studio")
+  phone       String   @default("+62 812 3456 7890")
+  instagram   String?
+  twitter     String?
+  linkedin    String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Hero {
+  id          String   @id @default("global")
+  headline    String   @default("We design the future.")
+  subHeadline String   @default("Crafting premium digital experiences through thoughtful design and engineering.")
+  imageUrl    String?
+  videoUrl    String?
+  ctaText     String   @default("View Our Work")
+  ctaLink     String   @default("/#portfolio")
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Service {
+  id          String   @id @default(cuid())
+  title       String
+  description String
+  order       Int      @default(0)
+  iconName    String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model GalleryItem {
+  id          String   @id @default(cuid())
+  imageUrl    String
+  category    String?
+  order       Int      @default(0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model PortfolioItem {
+  id          String   @id @default(cuid())
+  slug        String   @unique
+  title       String
+  category    String
+  year        String
+  client      String?
+  coverImage  String
+  description String?
+  content     String?
+  gallery     String[] @default([])
+  challenge   String?
+  solution    String?
+  result      String?
+  linkUrl     String?
+  status      String   @default("COMPLETED")
+  order       Int      @default(0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model BlogPost {
+  id          String   @id @default(cuid())
+  title       String
+  slug        String   @unique
+  content     String
+  coverImage  String?
+  published   Boolean  @default(false)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model ServiceLanding {
+  id          String   @id @default(cuid())
+  slug        String   @unique
+  serviceName String
+  headline    String
+  subheadline String
+  videoUrl    String?
+  features    Json     @default("[]")
+  packages    Json     @default("[]")
+  faqs        Json     @default("[]")
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model AboutUs {
+  id        String   @id @default("global")
+  title     String   @default("We Are NJ Studio")
+  subtitle  String   @default("A collective of passionate designers and engineers building premium digital experiences.")
+  content   String   @default("We believe in the power of aesthetics combined with robust engineering. Our mission is to elevate brands into the digital stratosphere.")
+  imageUrls String[] @default([])
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Testimonial {
+  id        String   @id @default(cuid())
+  client    String
+  role      String?
+  company   String?
+  content   String
+  rating    Int      @default(5)
+  order     Int      @default(0)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model RobloxAsset {
+  id           String   @id @default(cuid())
+  title        String
+  description  String?
+  price        String
+  imageUrl     String
+  gallery      String[] @default([])
+  content      String?
+  category     String?
+  downloadLink String?
+  order        Int      @default(0)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
+model ClientLogo {
+  id        String   @id @default(cuid())
+  name      String
+  imageUrl  String
+  service   String   // "ROBLOX" | "WEB" | "ALL"
+  order     Int      @default(0)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
